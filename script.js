@@ -18,3 +18,8 @@ squares.forEach(square => {
         square.style.backgroundColor = "purple";
     })
 })
+
+const btn = document.createElement("button");
+btn.textContent = "Change grid size";
+btn.classList.add("btn");
+document.body.insertBefore(btn, container);
