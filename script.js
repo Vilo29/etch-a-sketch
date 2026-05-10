@@ -26,8 +26,8 @@ createGrid(16);
 const btn = document.querySelector(".btn");
 btn.addEventListener('click', () => {
     const userSquaresPerSide = prompt("Enter the number of squares per side for the new grid (max 100)");
-    if (userSquaresPerSide <= 100) {
+    if (userSquaresPerSide > 0 && userSquaresPerSide <= 100) {
         createGrid(userSquaresPerSide);
     }
-    else alert("Sorry, the maximum grid size is 100");
+    else alert("Sorry, the grid size must be between 0 and 100");
 })
