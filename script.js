@@ -20,10 +20,7 @@ function createGrid(size) {
 
 createGrid(16);
 
-const btn = document.createElement("button");
-btn.textContent = "Change grid size";
-btn.classList.add("btn");
-document.body.insertBefore(btn, container);
+const btn = document.querySelector(".btn");
 
 btn.addEventListener('click', () => {
     const userSquareSize = prompt("Enter the number of squares per side for the new grid (max 100)");
