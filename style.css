@@ -40,11 +40,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: calc(40px * 16);
+    width: 640px;
 }
 
-.container div {
+.square {
     background-color: purple;
-    width: 40px;
-    height: 40px;
 }
