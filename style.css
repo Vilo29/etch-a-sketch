@@ -24,7 +24,7 @@ body {
     border-radius: 20px;
     font-size: 15px;
     transition-duration: 0.15s;
-    margin: 10px;
+    margin: 0 0 10px 0;
 }
 
 .btn:hover {
@@ -41,8 +41,9 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 640px;
+    border: 5px solid black;
 }
 
 .square {
-    background-color: purple;
+    background-color: white;
 }

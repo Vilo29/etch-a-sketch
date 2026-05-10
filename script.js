@@ -11,7 +11,7 @@ function createGrid(size) {
         div.style.height = `${squareSize}px`;
 
         div.addEventListener('mouseenter', () => {
-            div.style.backgroundColor = "yellow";
+            div.style.backgroundColor = "black";
         });
 
         container.appendChild(div);
