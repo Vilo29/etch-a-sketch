@@ -13,9 +13,6 @@ function createGrid(size) {
         div.addEventListener('mouseenter', () => {
             div.style.backgroundColor = "yellow";
         });
-        div.addEventListener('mouseleave', () => {
-            div.style.backgroundColor = "purple";
-        })
 
         container.appendChild(div);
     }
@@ -29,6 +26,9 @@ btn.classList.add("btn");
 document.body.insertBefore(btn, container);
 
 btn.addEventListener('click', () => {
-    const userSquareSize = prompt("Enter the number of squares per side for the new grid");
-    createGrid(userSquareSize);
+    const userSquareSize = prompt("Enter the number of squares per side for the new grid (max 100)");
+    if (userSquareSize <= 100) {
+        createGrid(userSquareSize);
+    }
+    else alert("Sorry, the maximum grid size is 100");
 })
