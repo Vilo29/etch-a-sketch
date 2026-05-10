@@ -1,10 +1,13 @@
 const container = document.querySelector(".container");
 
-function createGrid(size) {
+function createGrid(squaresPerSide) {
     container.innerHTML = ""; // clear before recreating
+    const totalSquares = squaresPerSide * squaresPerSide;
+
     const containerSize = container.clientWidth;
-    const squareSize = containerSize / size;
-    for (let i = 0; i < size*size; i++) {
+    const squareSize = `${containerSize / squaresPerSide}`;
+    
+    for (let i = 0; i < totalSquares; i++) {
         const div = document.createElement("div");
         div.classList.add("square");
         div.style.width = `${squareSize}px`;
@@ -21,11 +24,10 @@ function createGrid(size) {
 createGrid(16);
 
 const btn = document.querySelector(".btn");
-
 btn.addEventListener('click', () => {
-    const userSquareSize = prompt("Enter the number of squares per side for the new grid (max 100)");
-    if (userSquareSize <= 100) {
-        createGrid(userSquareSize);
+    const userSquaresPerSide = prompt("Enter the number of squares per side for the new grid (max 100)");
+    if (userSquaresPerSide <= 100) {
+        createGrid(userSquaresPerSide);
     }
     else alert("Sorry, the maximum grid size is 100");
 })
