@@ -9,20 +9,19 @@ function createGrid(size) {
         div.classList.add("square");
         div.style.width = `${squareSize}px`;
         div.style.height = `${squareSize}px`;
+
+        div.addEventListener('mouseenter', () => {
+            div.style.backgroundColor = "yellow";
+        });
+        div.addEventListener('mouseleave', () => {
+            div.style.backgroundColor = "purple";
+        })
+
         container.appendChild(div);
     }
 }
 
 createGrid(16);
-const squares = document.querySelectorAll(".square");
-squares.forEach(square => {
-    square.addEventListener('mouseenter', () => {
-        square.style.backgroundColor = "yellow";
-    });
-    square.addEventListener('mouseleave', () => {
-        square.style.backgroundColor = "purple";
-    })
-})
 
 const btn = document.createElement("button");
 btn.textContent = "Change grid size";
