@@ -23,11 +23,20 @@ function createGrid(squaresPerSide) {
 
 createGrid(16);
 
-const btn = document.querySelector(".btn");
+const clearBtn = document.querySelector(".clear")
+const btn = document.querySelector(".change-size");
 btn.addEventListener('click', () => {
     const userSquaresPerSide = prompt("Enter the number of squares per side for the new grid (max 100)");
     if (userSquaresPerSide > 0 && userSquaresPerSide <= 100) {
         createGrid(userSquaresPerSide);
     }
     else alert("Sorry, the grid size must be between 0 and 100");
+    // Clear screen
+    clearBtn.addEventListener('click', () => {
+        createGrid(userSquaresPerSide);
+    })
+})
+// Clear screen
+clearBtn.addEventListener('click', () => {
+    createGrid(16);
 })
