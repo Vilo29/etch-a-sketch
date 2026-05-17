@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const clearBtn = document.querySelector(".clear")
 const changeSizeBtn = document.querySelector(".change-size");
+const rainbowBtn = document.querySelector(".rainbow");
 let gridSize = 16;
 
 function createGrid(squaresPerSide) {
@@ -17,12 +18,25 @@ function createGrid(squaresPerSide) {
         div.style.height = `${squareSize}px`;
 
         div.addEventListener('mouseenter', () => {
-            div.style.backgroundColor = "black";
+            if (rainbowBtnClicked) div.style.backgroundColor = getRandomColor();
+            else div.style.backgroundColor = "black";
         });
 
         container.appendChild(div);
     }
 }
+
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+let rainbowBtnClicked = false;
+rainbowBtn.addEventListener('click', () => {
+    rainbowBtnClicked = true;
+})
 
 changeSizeBtn.addEventListener('click', () => {
     const userGridSize = prompt("Enter the number of squares per side for the new grid (max 100)");
