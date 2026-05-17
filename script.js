@@ -1,11 +1,13 @@
 const container = document.querySelector(".container");
+const clearBtn = document.querySelector(".clear")
+const changeSizeBtn = document.querySelector(".change-size");
 
 function createGrid(squaresPerSide) {
     container.innerHTML = ""; // clear before recreating
     const totalSquares = squaresPerSide * squaresPerSide;
 
     const containerSize = container.clientWidth;
-    const squareSize = `${containerSize / squaresPerSide}`;
+    const squareSize = containerSize / squaresPerSide;
     
     for (let i = 0; i < totalSquares; i++) {
         const div = document.createElement("div");
@@ -21,11 +23,7 @@ function createGrid(squaresPerSide) {
     }
 }
 
-createGrid(16);
-
-const clearBtn = document.querySelector(".clear")
-const btn = document.querySelector(".change-size");
-btn.addEventListener('click', () => {
+changeSizeBtn.addEventListener('click', () => {
     const userSquaresPerSide = prompt("Enter the number of squares per side for the new grid (max 100)");
     if (userSquaresPerSide > 0 && userSquaresPerSide <= 100) {
         createGrid(userSquaresPerSide);
@@ -40,3 +38,5 @@ btn.addEventListener('click', () => {
 clearBtn.addEventListener('click', () => {
     createGrid(16);
 })
+
+createGrid(16);
