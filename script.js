@@ -1,4 +1,4 @@
-const container = document.querySelector(".container");
+const container = document.querySelector(".grid-container");
 const clearBtn = document.querySelector(".clear")
 const changeSizeBtn = document.querySelector(".change-size");
 const rainbowBtn = document.querySelector(".rainbow");
