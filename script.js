@@ -2,7 +2,9 @@ const container = document.querySelector(".container");
 const clearBtn = document.querySelector(".clear")
 const changeSizeBtn = document.querySelector(".change-size");
 const rainbowBtn = document.querySelector(".rainbow");
+const eraseBtn = document.querySelector(".erase")
 let gridSize = 16;
+let mode = "draw";
 
 function createGrid(squaresPerSide) {
     container.innerHTML = ""; // clear before recreating
@@ -18,8 +20,9 @@ function createGrid(squaresPerSide) {
         div.style.height = `${squareSize}px`;
 
         div.addEventListener('mouseenter', () => {
-            if (rainbowBtnClicked) div.style.backgroundColor = getRandomColor();
-            else div.style.backgroundColor = "black";
+            if (mode === "rainbow") div.style.backgroundColor = getRandomColor();
+            else if (mode === "erase") div.style.backgroundColor = "white";
+            else if (mode === "draw") div.style.backgroundColor = "black";
         });
 
         container.appendChild(div);
@@ -33,10 +36,8 @@ function getRandomColor() {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-let rainbowBtnClicked = false;
-rainbowBtn.addEventListener('click', () => {
-    rainbowBtnClicked = true;
-})
+rainbowBtn.addEventListener('click', () => mode = "rainbow");
+eraseBtn.addEventListener('click', () => mode = "erase");
 
 changeSizeBtn.addEventListener('click', () => {
     const userGridSize = prompt("Enter the number of squares per side for the new grid (max 100)");
@@ -45,11 +46,11 @@ changeSizeBtn.addEventListener('click', () => {
         createGrid(gridSize);
     }
     else alert("Sorry, the grid size must be between 0 and 100");
-})
+});
 
 // Clear screen
 clearBtn.addEventListener('click', () => {
     createGrid(gridSize);
-})
+});
 
 createGrid(gridSize);
