@@ -3,6 +3,7 @@ const clearBtn = document.querySelector(".clear")
 const changeSizeBtn = document.querySelector(".change-size");
 const rainbowBtn = document.querySelector(".rainbow");
 const eraseBtn = document.querySelector(".erase")
+const colorBtn = document.querySelector(".color")
 let gridSize = 16;
 let mode = "draw";
 
@@ -38,6 +39,7 @@ function getRandomColor() {
 
 rainbowBtn.addEventListener('click', () => mode = "rainbow");
 eraseBtn.addEventListener('click', () => mode = "erase");
+colorBtn.addEventListener('click', () => mode = "draw");
 
 changeSizeBtn.addEventListener('click', () => {
     const userGridSize = prompt("Enter the number of squares per side for the new grid (max 100)");
