@@ -16,7 +16,7 @@ function createGrid(squaresPerSide) {
 
     const totalSquares = squaresPerSide * squaresPerSide;
     for (let i = 0; i < totalSquares; i++) {
-        
+
         const square = document.createElement("div");
         square.classList.add("square");
         square.style.width = `${squareSize}px`;
@@ -28,7 +28,6 @@ function createGrid(squaresPerSide) {
             paintSquare(square);
         });
 
-        square.addEventListener('mouseup', () => isDrawing = false);
         window.addEventListener('mouseup', () => isDrawing = false);
         square.addEventListener('mouseenter', () => isDrawing && paintSquare(square)); 
 
@@ -49,9 +48,14 @@ function getRandomColor() {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-rainbowBtn.addEventListener('click', () => mode = "rainbow");
-eraseBtn.addEventListener('click', () => mode = "erase");
-colorBtn.addEventListener('click', () => mode = "color");
+function setActiveButton(btn) {
+    document.querySelectorAll(".btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+}
+
+rainbowBtn.addEventListener('click', () => { mode = "rainbow"; setActiveButton(rainbowBtn)});
+eraseBtn.addEventListener('click', () => { mode = "erase"; setActiveButton(eraseBtn)});
+colorBtn.addEventListener('click', () => { mode = "color"; setActiveButton(colorBtn)});
 clearBtn.addEventListener('click', () => createGrid(gridSize));
 
 changeSizeBtn.addEventListener('click', () => {

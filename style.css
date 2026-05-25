@@ -44,6 +44,13 @@ body {
     cursor: pointer;
 }
 
+.btn.active {
+    transform: scale(1.09);
+    border-color: #1a73e8;
+    background-color: #1a73e8;
+    color: white;
+}
+
 .grid-container {
     width: 640px;
     height: 640px;
