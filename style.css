@@ -49,7 +49,7 @@ body {
     height: 640px;
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid black;
+    outline: 5px solid black;
 }
 
 .square {

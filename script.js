@@ -5,7 +5,8 @@ const rainbowBtn = document.querySelector(".rainbow");
 const eraseBtn = document.querySelector(".erase")
 const colorBtn = document.querySelector(".color")
 let gridSize = 16;
-let mode = "draw";
+let mode = "color";
+let isDrawing = false;
 
 function createGrid(squaresPerSide) {
     container.innerHTML = ""; // clear before recreating
@@ -15,19 +16,30 @@ function createGrid(squaresPerSide) {
 
     const totalSquares = squaresPerSide * squaresPerSide;
     for (let i = 0; i < totalSquares; i++) {
-        const div = document.createElement("div");
-        div.classList.add("square");
-        div.style.width = `${squareSize}px`;
-        div.style.height = `${squareSize}px`;
+        
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.style.width = `${squareSize}px`;
+        square.style.height = `${squareSize}px`;
 
-        div.addEventListener('mouseenter', () => {
-            if (mode === "rainbow") div.style.backgroundColor = getRandomColor();
-            else if (mode === "erase") div.style.backgroundColor = "white";
-            else if (mode === "draw") div.style.backgroundColor = "black";
+        square.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            isDrawing = true;
+            paintSquare(square);
         });
 
-        container.appendChild(div);
+        square.addEventListener('mouseup', () => isDrawing = false);
+        window.addEventListener('mouseup', () => isDrawing = false);
+        square.addEventListener('mouseenter', () => isDrawing && paintSquare(square)); 
+
+        container.appendChild(square);
     }
+}
+
+function paintSquare(square) {
+    if (mode === "rainbow") square.style.backgroundColor = getRandomColor();
+    else if (mode === "erase") square.style.backgroundColor = "white";
+    else if (mode === "color") square.style.backgroundColor = "black";
 }
 
 function getRandomColor() {
@@ -39,7 +51,8 @@ function getRandomColor() {
 
 rainbowBtn.addEventListener('click', () => mode = "rainbow");
 eraseBtn.addEventListener('click', () => mode = "erase");
-colorBtn.addEventListener('click', () => mode = "draw");
+colorBtn.addEventListener('click', () => mode = "color");
+clearBtn.addEventListener('click', () => createGrid(gridSize));
 
 changeSizeBtn.addEventListener('click', () => {
     const userGridSize = prompt("Enter the number of squares per side for the new grid (max 100)");
@@ -48,11 +61,6 @@ changeSizeBtn.addEventListener('click', () => {
         createGrid(gridSize);
     }
     else alert("Sorry, the grid size must be between 0 and 100");
-});
-
-// Clear screen
-clearBtn.addEventListener('click', () => {
-    createGrid(gridSize);
 });
 
 createGrid(gridSize);
