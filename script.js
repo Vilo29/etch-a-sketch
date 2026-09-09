@@ -4,6 +4,7 @@ const changeSizeBtn = document.querySelector(".change-size");
 const rainbowBtn = document.querySelector(".rainbow");
 const eraseBtn = document.querySelector(".erase")
 const colorBtn = document.querySelector(".color")
+const darkeningBtn = document.querySelector(".darkening");
 let gridSize = 16;
 let mode = "color";
 let isDrawing = false;
@@ -37,8 +38,14 @@ function createGrid(squaresPerSide) {
 
 function paintSquare(square) {
     if (mode === "rainbow") square.style.backgroundColor = getRandomColor();
-    else if (mode === "erase") square.style.backgroundColor = "white";
+    else if (mode === "erase") {
+        square.style.backgroundColor = "white";
+        delete square.dataset.hue;
+        delete square.dataset.level;
+    }
     else if (mode === "color") square.style.backgroundColor = "black";
+    else if (mode === "darkening") paintDarkening(square);
+
 }
 
 function getRandomColor() {
@@ -46,6 +53,17 @@ function getRandomColor() {
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+function paintDarkening(square) {
+    if (!square.dataset.hue) {
+        square.dataset.hue = Math.floor(Math.random() * 360);
+        square.dataset.level = 0;
+    }
+    const level = Math.min(parseInt(square.dataset.level) + 1, 10);
+    square.dataset.level = level;
+    const lightness = 100 - level * 10;
+    square.style.backgroundColor = `hsl(${square.dataset.hue}, 70%, ${lightness}%)`;
 }
 
 function setActiveButton(btn) {
@@ -56,6 +74,7 @@ function setActiveButton(btn) {
 rainbowBtn.addEventListener('click', () => { mode = "rainbow"; setActiveButton(rainbowBtn)});
 eraseBtn.addEventListener('click', () => { mode = "erase"; setActiveButton(eraseBtn)});
 colorBtn.addEventListener('click', () => { mode = "color"; setActiveButton(colorBtn)});
+darkeningBtn.addEventListener('click', () => { mode = "darkening"; setActiveButton(darkeningBtn)});
 clearBtn.addEventListener('click', () => createGrid(gridSize));
 
 changeSizeBtn.addEventListener('click', () => {
