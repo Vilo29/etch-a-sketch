@@ -29,7 +29,6 @@ function createGrid(squaresPerSide) {
             paintSquare(square);
         });
 
-        window.addEventListener('mouseup', () => isDrawing = false);
         square.addEventListener('mouseenter', () => isDrawing && paintSquare(square)); 
 
         container.appendChild(square);
@@ -86,3 +85,5 @@ changeSizeBtn.addEventListener('click', () => {
 });
 
 createGrid(gridSize);
+
+window.addEventListener('mouseup', () => isDrawing = false);
