@@ -36,13 +36,17 @@ function createGrid(squaresPerSide) {
 }
 
 function paintSquare(square) {
-    if (mode === "rainbow") square.style.backgroundColor = getRandomColor(square);
+    if (mode === "rainbow") getRandomColor(square);
     else if (mode === "erase") {
         square.style.backgroundColor = "white";
         delete square.dataset.hue;
         delete square.dataset.level;
     }
-    else if (mode === "color") square.style.backgroundColor = "black";
+    else if (mode === "color") {
+        square.dataset.hue = 0;
+        square.dataset.level = 10;
+        square.style.backgroundColor = "black";
+    }
     else if (mode === "darkening") paintDarkening(square);
 
 }
