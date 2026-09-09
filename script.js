@@ -37,7 +37,7 @@ function createGrid(squaresPerSide) {
 }
 
 function paintSquare(square) {
-    if (mode === "rainbow") square.style.backgroundColor = getRandomColor();
+    if (mode === "rainbow") square.style.backgroundColor = getRandomColor(square);
     else if (mode === "erase") {
         square.style.backgroundColor = "white";
         delete square.dataset.hue;
@@ -48,11 +48,10 @@ function paintSquare(square) {
 
 }
 
-function getRandomColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
+function getRandomColor(square) {
+    square.dataset.hue = Math.floor(Math.random() * 360);
+    square.dataset.level = 5;
+    square.style.backgroundColor = `hsl(${square.dataset.hue}, 70%, 50%)`;
 }
 
 function paintDarkening(square) {
